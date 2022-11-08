@@ -3,6 +3,7 @@ import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { Link, useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider';
 import Comments from './Comments';
+import { ToastContainer, toast } from 'react-toastify';
 
 const ServiceDetails = () => {
     const { user } = useContext(AuthContext)
@@ -40,6 +41,21 @@ const ServiceDetails = () => {
             },
             body: JSON.stringify(commentObj)
         })
+            .then(res => res.json())
+            .then(data => {
+                if (data.acknowledged) {
+                    toast.success('Review Added Successfully!', {
+                        position: "top-center",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "dark",
+                    });
+                }
+            })
     }
 
     return (
@@ -49,6 +65,7 @@ const ServiceDetails = () => {
                     <title>Service Details - Gallery of Memories</title>
                 </Helmet>
             </HelmetProvider>
+            <ToastContainer />
             <div className="card w-full bg-base-100 shadow-xl">
                 <figure><img src={img} alt="" /></figure>
                 <div className="card-body">

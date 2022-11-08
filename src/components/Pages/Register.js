@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FaGoogle } from 'react-icons/fa';
 import { AuthContext } from '../../contexts/AuthProvider';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
+import { ToastContainer, toast } from 'react-toastify';
 
 const Register = () => {
     const { createUser, updateUser, sigInWithGoogle } = useContext(AuthContext);
@@ -24,6 +25,16 @@ const Register = () => {
                 form.reset();
                 handleUpdateUser(name, photo);
                 navigate(from, { replace: true })
+                toast.success('Sign up Successful!', {
+                    position: "top-center",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                });
             })
             .catch(e => console.error(e));
 
@@ -55,6 +66,7 @@ const Register = () => {
                     <title>Register - Gallery of Memories</title>
                 </Helmet>
             </HelmetProvider>
+            <ToastContainer />
             <div className="hero-content flex-col">
                 <div className="text-center lg:text-left mb-2 text-primary bg-base-100 p-4 rounded-lg">
                     <h1 className="text-5xl font-bold">Register now!</h1>

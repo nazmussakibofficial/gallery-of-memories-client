@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { AuthContext } from '../../contexts/AuthProvider';
 import CommentOptions from '../Shared/CommentOptions';
+import { ToastContainer, toast } from 'react-toastify';
 
 const UserReviews = () => {
     const { user } = useContext(AuthContext);
@@ -15,6 +16,16 @@ const UserReviews = () => {
                 if (data.deletedCount > 0) {
                     const remaining = comments.filter(comment => comment._id !== id)
                     setComments(remaining)
+                    toast.success('Review Deleted Successfully!', {
+                        position: "top-center",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "dark",
+                    });
                 }
             })
     }
@@ -51,6 +62,7 @@ const UserReviews = () => {
                     <title>User Reviews - Gallery of Memories</title>
                 </Helmet>
             </HelmetProvider>
+            <ToastContainer />
             {comments.length !== 0 ?
                 comments.map(comment => <CommentOptions key={comment._id} comments={comment} handleDelete={handleDelete} handleUpdate={handleUpdate}></CommentOptions>)
                 :
