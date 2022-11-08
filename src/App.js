@@ -6,6 +6,7 @@ import Services from './components/Pages/Services';
 import Login from './components/Pages/Login';
 import Register from './components/Pages/Register';
 import Blog from './components/Pages/Blog';
+import ServiceDetails from './components/Shared/ServiceDetails';
 
 function App() {
   const router = createBrowserRouter([
@@ -16,12 +17,17 @@ function App() {
         {
           path: '/',
           element: <Home></Home>,
-          loader: () => fetch('http://localhost:5000/services')
+          loader: () => fetch('http://localhost:5000/home')
         },
         {
           path: '/services',
           element: <Services></Services>,
           loader: () => fetch('http://localhost:5000/services')
+        },
+        {
+          path: '/services/:id',
+          element: <ServiceDetails></ServiceDetails>,
+          loader: ({ params }) => fetch(`http://localhost:5000/services/${params.id}`)
         },
         {
           path: '/login',
