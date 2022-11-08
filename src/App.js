@@ -9,6 +9,7 @@ import Blog from './components/Pages/Blog';
 import ServiceDetails from './components/Shared/ServiceDetails';
 import CustomService from './components/Pages/CustomService';
 import UserReviews from './components/Pages/UserReviews';
+import PrivateRoute from './components/Shared/PrivateRoute';
 
 function App() {
   const router = createBrowserRouter([
@@ -33,7 +34,7 @@ function App() {
         },
         {
           path: '/customservice',
-          element: <CustomService></CustomService>
+          element: <PrivateRoute><CustomService></CustomService></PrivateRoute>
         },
         {
           path: '/login',
@@ -45,7 +46,7 @@ function App() {
         },
         {
           path: '/comments',
-          element: <UserReviews></UserReviews>
+          element: <PrivateRoute><UserReviews></UserReviews></PrivateRoute>
         },
         {
           path: '/blog',

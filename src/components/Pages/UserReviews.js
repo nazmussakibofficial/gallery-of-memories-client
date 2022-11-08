@@ -4,7 +4,7 @@ import Comments from '../Shared/Comments';
 
 const UserReviews = () => {
     const { user } = useContext(AuthContext);
-    const [comments, setComments] = useState({})
+    const [comments, setComments] = useState([])
     console.log(comments);
 
     useEffect(() => {
