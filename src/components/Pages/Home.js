@@ -1,4 +1,5 @@
 import React from 'react';
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { Link, useLoaderData } from 'react-router-dom';
 import ServiceCard from '../Shared/ServiceCard';
 
@@ -7,6 +8,11 @@ const Home = () => {
     const services = useLoaderData();
     return (
         <div>
+            <HelmetProvider>
+                <Helmet>
+                    <title>Home - Gallery of Memories</title>
+                </Helmet>
+            </HelmetProvider>
             <div className='flex justify-center'>
                 <div className="carousel w-full">
                     <div id="slide1" className="carousel-item relative w-full">

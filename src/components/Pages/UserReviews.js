@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { AuthContext } from '../../contexts/AuthProvider';
 import CommentOptions from '../Shared/CommentOptions';
 
@@ -45,6 +46,11 @@ const UserReviews = () => {
     return (
 
         <div className='min-h-screen'>
+            <HelmetProvider>
+                <Helmet>
+                    <title>User Reviews - Gallery of Memories</title>
+                </Helmet>
+            </HelmetProvider>
             {comments.length !== 0 ?
                 comments.map(comment => <CommentOptions key={comment._id} comments={comment} handleDelete={handleDelete} handleUpdate={handleUpdate}></CommentOptions>)
                 :

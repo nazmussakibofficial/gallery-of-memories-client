@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { Link, useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider';
 import Comments from './Comments';
@@ -43,6 +44,11 @@ const ServiceDetails = () => {
 
     return (
         <div className='container mx-auto py-16 px-4'>
+            <HelmetProvider>
+                <Helmet>
+                    <title>Service Details - Gallery of Memories</title>
+                </Helmet>
+            </HelmetProvider>
             <div className="card w-full bg-base-100 shadow-xl">
                 <figure><img src={img} alt="" /></figure>
                 <div className="card-body">
