@@ -8,6 +8,7 @@ import Register from './components/Pages/Register';
 import Blog from './components/Pages/Blog';
 import ServiceDetails from './components/Shared/ServiceDetails';
 import CustomService from './components/Pages/CustomService';
+import UserReviews from './components/Pages/UserReviews';
 
 function App() {
   const router = createBrowserRouter([
@@ -41,6 +42,10 @@ function App() {
         {
           path: '/register',
           element: <Register></Register>
+        },
+        {
+          path: '/comments',
+          element: <UserReviews></UserReviews>
         },
         {
           path: '/blog',
