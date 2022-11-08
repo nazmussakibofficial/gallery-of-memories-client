@@ -1,11 +1,19 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider';
+import Comments from './Comments';
 
 const ServiceDetails = () => {
     const { user } = useContext(AuthContext)
+    const [comments, setComments] = useState([]);
     const service = useLoaderData();
     const { title, img, details, price, _id } = service
+
+    useEffect(() => {
+        fetch(`http://localhost:5000/comments/${_id}`)
+            .then(res => res.json())
+            .then(data => setComments(data))
+    }, [_id])
 
     const handleComment = event => {
         event.preventDefault();
@@ -24,24 +32,34 @@ const ServiceDetails = () => {
             photo,
             comment
         }
+        fetch('http://localhost:5000/comments', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(commentObj)
+        })
     }
 
     return (
-        <div className='container py-16 px-4'>
+        <div className='container mx-auto py-16 px-4'>
             <div className="card w-full bg-base-100 shadow-xl">
                 <figure><img src={img} alt="" /></figure>
                 <div className="card-body">
                     <h2 className="card-title">{title}</h2>
                     <p>{details}</p>
-                    <div className="card-actions justify-center">
-                        <p className='text-2xl text-primary font-bold'>$ {price}</p>
+                    <div className="card-actions">
+                        {price && <p className='text-2xl text-primary font-bold'>$ {price}</p>}
                     </div>
                 </div>
             </div>
+            {
+                comments.map(comment => <Comments key={comment._id} comments={comment}></Comments>)
+            }
 
             {
                 user?.uid ?
-                    <div className="flex mx-auto items-center justify-center shadow-lg mt-56 mb-4 w-full">
+                    <div className="flex mx-auto items-center justify-center shadow-lg mt-6 mb-4 w-full">
                         <form onSubmit={handleComment} className="w-full bg-white rounded-lg px-4 pt-2">
                             <div className="flex flex-wrap -mx-3 mb-6">
                                 <h2 className="px-4 pt-3 pb-2 text-gray-800 text-lg">Add a new comment</h2>

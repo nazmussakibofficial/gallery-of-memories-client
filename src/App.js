@@ -7,6 +7,7 @@ import Login from './components/Pages/Login';
 import Register from './components/Pages/Register';
 import Blog from './components/Pages/Blog';
 import ServiceDetails from './components/Shared/ServiceDetails';
+import CustomService from './components/Pages/CustomService';
 
 function App() {
   const router = createBrowserRouter([
@@ -28,6 +29,10 @@ function App() {
           path: '/services/:id',
           element: <ServiceDetails></ServiceDetails>,
           loader: ({ params }) => fetch(`http://localhost:5000/services/${params.id}`)
+        },
+        {
+          path: '/customservice',
+          element: <CustomService></CustomService>
         },
         {
           path: '/login',

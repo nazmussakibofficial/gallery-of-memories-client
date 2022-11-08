@@ -17,10 +17,12 @@ const ServiceCard = ({ service }) => {
             <div className="card-body">
                 <h2 className="card-title">{title}</h2>
                 <p>{details.slice(0, 100) + '...'}</p>
-                <p className='text-2xl text-primary font-bold'>$ {price}</p>
-                <div className='card-actions justify-start'>
-                    <div className="badge badge-outline">Ratings: {rating}</div>
-                </div>
+                {price && <p className='text-2xl text-primary font-bold'>$ {price}</p>}
+                {rating &&
+                    <div className='card-actions justify-start'>
+                        <div className="badge badge-outline">Ratings: {rating}</div>
+                    </div>
+                }
                 <div className="card-actions justify-end">
                     <Link to={`/services/${_id}`}><button className="btn btn-primary">View Details</button></Link>
                 </div>
