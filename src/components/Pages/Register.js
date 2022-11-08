@@ -1,10 +1,13 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FaGoogle } from 'react-icons/fa';
 import { AuthContext } from '../../contexts/AuthProvider';
 
 const Register = () => {
     const { createUser, updateUser, sigInWithGoogle } = useContext(AuthContext);
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '/'
 
     const handleSubmit = event => {
         event.preventDefault();
@@ -19,6 +22,7 @@ const Register = () => {
                 const user = result.user;
                 form.reset();
                 handleUpdateUser(name, photo);
+                navigate(from, { replace: true })
             })
             .catch(e => console.error(e));
 
@@ -36,7 +40,10 @@ const Register = () => {
 
     const handleGoogleSignin = () => {
         sigInWithGoogle()
-            .then(result => { const user = result.user })
+            .then(result => {
+                const user = result.user;
+                navigate(from, { replace: true });
+            })
             .catch(e => console.error(e))
     }
 

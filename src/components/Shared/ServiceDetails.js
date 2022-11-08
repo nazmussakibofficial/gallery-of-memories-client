@@ -13,7 +13,7 @@ const ServiceDetails = () => {
         fetch(`http://localhost:5000/comments/${_id}`)
             .then(res => res.json())
             .then(data => setComments(data))
-    }, [_id])
+    }, [_id, comments])
 
     const handleComment = event => {
         event.preventDefault();
