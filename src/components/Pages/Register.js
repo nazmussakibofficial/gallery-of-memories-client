@@ -41,7 +41,7 @@ const Register = () => {
     }
 
     return (
-        <div className="hero form-body min-h-screen">
+        <div className="hero min-h-screen bg-[url('https://images.unsplash.com/photo-1478131143081-80f7f84ca84d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80')]">
             <div className="hero-content flex-col">
                 <div className="text-center lg:text-left mb-2 text-primary bg-base-100 p-4 rounded-lg">
                     <h1 className="text-5xl font-bold">Register now!</h1>
