@@ -45,9 +45,10 @@ const UserReviews = () => {
     return (
 
         <div className='min-h-screen'>
-            {
-
+            {comments.length !== 0 ?
                 comments.map(comment => <CommentOptions key={comment._id} comments={comment} handleDelete={handleDelete} handleUpdate={handleUpdate}></CommentOptions>)
+                :
+                <h2 className='text-3xl text-center mt-6'>No reviews were added</h2>
             }
         </div>
     );
