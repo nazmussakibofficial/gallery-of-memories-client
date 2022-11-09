@@ -3,6 +3,7 @@ import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { AuthContext } from '../../contexts/AuthProvider';
 import CommentOptions from '../Shared/CommentOptions';
 import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const UserReviews = () => {
     const { user } = useContext(AuthContext);
@@ -52,7 +53,7 @@ const UserReviews = () => {
         fetch(`http://localhost:5000/comments?email=${user.email}`)
             .then(res => res.json())
             .then(data => setComments(data))
-    }, [user?.email, comments])
+    }, [user?.email])
 
     return (
 

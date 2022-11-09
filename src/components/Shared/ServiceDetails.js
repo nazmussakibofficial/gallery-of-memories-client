@@ -4,6 +4,7 @@ import { Link, useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider';
 import Comments from './Comments';
 import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const ServiceDetails = () => {
     const { user } = useContext(AuthContext)
@@ -44,6 +45,7 @@ const ServiceDetails = () => {
             .then(res => res.json())
             .then(data => {
                 if (data.acknowledged) {
+                    form.reset();
                     toast.success('Review Added Successfully!', {
                         position: "top-center",
                         autoClose: 5000,

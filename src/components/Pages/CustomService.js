@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { AuthContext } from '../../contexts/AuthProvider';
 import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const CustomService = () => {
     const { user } = useContext(AuthContext);

@@ -4,6 +4,7 @@ import { FaGoogle } from 'react-icons/fa';
 import { AuthContext } from '../../contexts/AuthProvider';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Register = () => {
     const { createUser, updateUser, sigInWithGoogle } = useContext(AuthContext);
