@@ -6,7 +6,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const UserReviews = () => {
-    const { user } = useContext(AuthContext);
+    const { user, logOut } = useContext(AuthContext);
     const [comments, setComments] = useState([])
     const handleDelete = id => {
         fetch(`http://localhost:5000/comments/${id}`, {
@@ -34,26 +34,45 @@ const UserReviews = () => {
     const handleUpdate = (id, event) => {
         event.preventDefault();
         const form = event.target;
-        const details = form.details.value;
-        console.log(id)
+        const comment = form.comment.value;
         fetch(`http://localhost:5000/comments/${id}`, {
             method: 'PATCH',
             headers: {
                 'content-type': 'application/json'
             },
-            body: JSON.stringify({ details })
+            body: JSON.stringify({ comment })
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data)
+                if (data.modifiedCount > 0) {
+                    toast.success('Review Updated Successfully!', {
+                        position: "top-center",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "dark",
+                    });
+                }
             })
     }
 
     useEffect(() => {
-        fetch(`http://localhost:5000/comments?email=${user.email}`)
-            .then(res => res.json())
+        fetch(`http://localhost:5000/comments?email=${user.email}`, {
+            headers: {
+                authorization: `Bearer ${localStorage.getItem('token')}`
+            }
+        })
+            .then(res => {
+                if (res.status === 401 || res.status === 403) {
+                    return logOut()
+                }
+                return res.json()
+            })
             .then(data => setComments(data))
-    }, [user?.email])
+    }, [user?.email, comments, logOut])
 
     return (
 

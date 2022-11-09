@@ -36,13 +36,13 @@ const CommentOptions = ({ comments, handleDelete, handleUpdate }) => {
                 <div className="modal">
                     <div className="modal-box">
                         <h3 className="font-bold text-lg mb-6">Update your comment</h3>
-                        <form onSubmit={() => { handleUpdate(_id) }}>
+                        <form onSubmit={(event) => { handleUpdate(_id, event) }}>
                             <div className='form-control'>
-                                <textarea name='details' className="textarea textarea-bordered resize-none w-full h-20" placeholder=""></textarea>
+                                <textarea name='comment' className="textarea textarea-bordered resize-none w-full h-20" defaultValue={comment}></textarea>
                             </div>
                             <div className='modal-action'>
                                 <button type='submit' htmlFor="my-modal-2" className="btn">Save Changes</button>
-                                <label htmlFor="my-modal-2" className="btn">Discard</label>
+                                <label htmlFor="my-modal-2" className="btn">Close</label>
                             </div>
                         </form>
                     </div>
