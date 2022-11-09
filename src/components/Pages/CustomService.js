@@ -18,7 +18,7 @@ const CustomService = () => {
             img: photo,
             details
         }
-        fetch('http://localhost:5000/services', {
+        fetch('https://gallery-of-memories-server.vercel.app/services', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
-import { useLoaderData } from 'react-router-dom';
 import ServiceCard from '../Shared/ServiceCard';
 
 const Services = () => {
     const [services, setServices] = useState([]);
     const [loading, setLoading] = useState(true);
     useEffect(() => {
-        fetch('http://localhost:5000/services')
+        fetch('https://gallery-of-memories-server.vercel.app/services')
             .then(res => res.json())
             .then(data => {
                 setServices(data)

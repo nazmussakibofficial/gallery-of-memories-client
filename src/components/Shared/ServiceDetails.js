@@ -13,7 +13,7 @@ const ServiceDetails = () => {
     const { title, img, details, price, _id } = service
 
     useEffect(() => {
-        fetch(`http://localhost:5000/comments/${_id}`)
+        fetch(`https://gallery-of-memories-server.vercel.app/comments/${_id}`)
             .then(res => res.json())
             .then(data => setComments(data))
     }, [_id, comments])
@@ -35,7 +35,7 @@ const ServiceDetails = () => {
             photo,
             comment
         }
-        fetch('http://localhost:5000/comments', {
+        fetch('https://gallery-of-memories-server.vercel.app/comments', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

@@ -9,7 +9,7 @@ const UserReviews = () => {
     const { user, logOut } = useContext(AuthContext);
     const [comments, setComments] = useState([])
     const handleDelete = id => {
-        fetch(`http://localhost:5000/comments/${id}`, {
+        fetch(`https://gallery-of-memories-server.vercel.app/comments/${id}`, {
             method: 'DELETE'
         })
             .then(res => res.json())
@@ -35,7 +35,7 @@ const UserReviews = () => {
         event.preventDefault();
         const form = event.target;
         const comment = form.comment.value;
-        fetch(`http://localhost:5000/comments/${id}`, {
+        fetch(`https://gallery-of-memories-server.vercel.app/comments/${id}`, {
             method: 'PATCH',
             headers: {
                 'content-type': 'application/json'
@@ -60,7 +60,7 @@ const UserReviews = () => {
     }
 
     useEffect(() => {
-        fetch(`http://localhost:5000/comments?email=${user.email}`, {
+        fetch(`https://gallery-of-memories-server.vercel.app/comments?email=${user.email}`, {
             headers: {
                 authorization: `Bearer ${localStorage.getItem('token')}`
             }

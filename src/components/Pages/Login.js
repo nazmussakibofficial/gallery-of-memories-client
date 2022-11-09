@@ -21,7 +21,7 @@ const Login = () => {
                     email: user.email
                 }
 
-                fetch('http://localhost:5000/jwt', {
+                fetch('https://gallery-of-memories-server.vercel.app/jwt', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'
@@ -48,7 +48,7 @@ const Login = () => {
                     email: user.email
                 }
 
-                fetch('http://localhost:5000/jwt', {
+                fetch('https://gallery-of-memories-server.vercel.app/jwt', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'
@@ -89,9 +89,6 @@ const Login = () => {
                                 <span className="label-text">Password</span>
                             </label>
                             <input name='password' type="password" placeholder="password" className="input input-bordered" required />
-                            <label className="label">
-                                <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
-                            </label>
                         </div>
                         <div className="form-control mt-6">
                             <button className="btn btn-primary">Login</button>

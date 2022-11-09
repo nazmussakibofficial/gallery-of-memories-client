@@ -20,7 +20,7 @@ function App() {
         {
           path: '/',
           element: <Home></Home>,
-          loader: () => fetch('http://localhost:5000/home')
+          loader: () => fetch('https://gallery-of-memories-server.vercel.app/home')
         },
         {
           path: '/services',
@@ -29,7 +29,7 @@ function App() {
         {
           path: '/services/:id',
           element: <ServiceDetails></ServiceDetails>,
-          loader: ({ params }) => fetch(`http://localhost:5000/services/${params.id}`)
+          loader: ({ params }) => fetch(`https://gallery-of-memories-server.vercel.app/services/${params.id}`)
         },
         {
           path: '/customservice',

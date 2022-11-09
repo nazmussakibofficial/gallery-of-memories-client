@@ -2,6 +2,9 @@ import React from 'react';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { Link, useLoaderData } from 'react-router-dom';
 import ServiceCard from '../Shared/ServiceCard';
+import img1 from '../../img/img1.jpg'
+import img2 from '../../img/img2.jpg'
+import img3 from '../../img/img3.jpg'
 
 
 const Home = () => {
@@ -16,21 +19,21 @@ const Home = () => {
             <div className='flex justify-center'>
                 <div className="carousel w-full">
                     <div id="slide1" className="carousel-item relative w-full">
-                        <img src="https://thumbs.dreamstime.com/b/travel-banner-design-template-airplane-model-map-vintage-camera-beach-hat-seashells-yellow-background-top-view-171503254.jpg" className="w-full" alt='' />
+                        <img src={img1} className="w-full" alt='' />
                         <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
                             <a href="#slide3" className="btn btn-circle">❮</a>
                             <a href="#slide2" className="btn btn-circle">❯</a>
                         </div>
                     </div>
                     <div id="slide2" className="carousel-item relative w-full">
-                        <img src="https://images.squarespace-cdn.com/content/v1/5a4618078dd04166713bf2e7/1541403705446-TQ6C8WFI6WYVM9NMFVCU/banner.JPG?format=2500w" className="w-full" alt='' />
+                        <img src={img2} className="w-full" alt='' />
                         <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
                             <a href="#slide1" className="btn btn-circle">❮</a>
                             <a href="#slide3" className="btn btn-circle">❯</a>
                         </div>
                     </div>
                     <div id="slide3" className="carousel-item relative w-full">
-                        <img src="https://i.pinimg.com/originals/69/d0/7f/69d07f5b4e21ac19a3bdebbbdd6d2cc1.jpg" className="w-full" alt='' />
+                        <img src={img3} className="w-full" alt='' />
                         <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
                             <a href="#slide2" className="btn btn-circle">❮</a>
                             <a href="#slide1" className="btn btn-circle">❯</a>

@@ -11,7 +11,6 @@ const Comments = ({ comments }) => {
                     <div className="flex flex-col w-full">
                         <div className="flex flex-row justify-between">
                             <p className="relative text-xl whitespace-nowrap truncate overflow-hidden">{customer}</p>
-                            <a className="text-gray-500 text-xl" href="#"><i className="fa-solid fa-trash"></i></a>
                         </div>
                         <p className="text-gray-400 text-sm">{date}</p>
                     </div>
