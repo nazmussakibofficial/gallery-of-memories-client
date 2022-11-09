@@ -10,6 +10,7 @@ import ServiceDetails from './components/Shared/ServiceDetails';
 import CustomService from './components/Pages/CustomService';
 import UserReviews from './components/Pages/UserReviews';
 import PrivateRoute from './components/Shared/PrivateRoute';
+import ErrorPage from './components/Pages/ErrorPage';
 
 function App() {
   const router = createBrowserRouter([
@@ -51,6 +52,11 @@ function App() {
           path: '/blog',
           element: <Blog></Blog>
         },
+        {
+          path: '*',
+          element: <ErrorPage></ErrorPage>
+        }
+
       ]
     }
   ])
