@@ -31,10 +31,9 @@ const Login = () => {
                     .then(res => res.json())
                     .then(data => {
                         localStorage.setItem('token', data.token);
+                        form.reset();
                         navigate(from, { replace: true });
                     })
-                form.reset();
-
             })
             .catch(e => console.error(e))
 

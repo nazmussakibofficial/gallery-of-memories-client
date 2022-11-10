@@ -1,7 +1,7 @@
 import React from 'react';
 
 const CommentOptions = ({ comments, handleDelete, handleUpdate }) => {
-    const { photo, customer, comment, _id, date } = comments
+    const { photo, customer, comment, _id, date, serviceName } = comments
 
 
     return (
@@ -13,7 +13,7 @@ const CommentOptions = ({ comments, handleDelete, handleUpdate }) => {
                         <div className="flex flex-row justify-between">
                             <p className="relative text-xl whitespace-nowrap truncate overflow-hidden">{customer}</p>
                         </div>
-                        <p className="text-gray-400 text-sm">{date}</p>
+                        <p className="text-gray-400 text-sm">{date} , Service: {serviceName} </p>
                     </div>
                 </div>
                 <p className="-mt-4 text-gray-500">{comment}</p>

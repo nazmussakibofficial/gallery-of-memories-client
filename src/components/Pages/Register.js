@@ -23,7 +23,6 @@ const Register = () => {
         createUser(email, password)
             .then(result => {
                 const user = result.user;
-                form.reset();
                 handleUpdateUser(name, photo);
                 const currentUser = {
                     email: user.email
@@ -39,6 +38,7 @@ const Register = () => {
                     .then(res => res.json())
                     .then(data => {
                         localStorage.setItem('token', data.token);
+                        form.reset();
                         navigate(from, { replace: true });
                     })
                 toast.success('Sign up Successful!', {

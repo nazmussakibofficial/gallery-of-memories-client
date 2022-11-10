@@ -1,4 +1,4 @@
-# Gallery o fMemories Project
+# Gallery of Memories Project
 
 ## Deployment
 
@@ -9,6 +9,8 @@
 ### `React, firebase, react router dom, tailwind, daisyUI, react toastify, react helmet async, react photo view`
 
 This project features:
+
+### Note: the profile options can be accessed after you click on the profile picture
 
 ### `SPA(Single Page Application) built with react router, which enables smoother load time`
 
