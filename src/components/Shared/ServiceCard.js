@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 const ServiceCard = ({ service }) => {
     const { title, img, details, price, rating, _id } = service;
     return (
-        <div className="card w-96 bg-base-100 shadow-xl">
+        <div className="card w-96 bg-neutral shadow-xl">
             <figure>
                 <PhotoProvider>
                     <PhotoView src={img}>

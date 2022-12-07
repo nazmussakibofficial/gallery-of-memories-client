@@ -44,25 +44,25 @@ const Home = () => {
             <div className='container mx-auto py-16 px-4'>
                 <h1 className='text-4xl font-bold text-primary text-center mb-6 p-4'>Why Should You Use Our Services</h1>
                 <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
-                    <div className="card bg-base-100">
+                    <div className="card bg-neutral">
                         <div className="card-body">
                             <h2 className="card-title">Expert Photographers</h2>
                             <p>Our photograpgers are fully trained for all services.</p>
                         </div>
                     </div>
-                    <div className="card bg-base-100">
+                    <div className="card bg-neutral">
                         <div className="card-body">
                             <h2 className="card-title">Advanced Equipments and tools</h2>
                             <p>We have high end professional cameras and tools in our inventory.</p>
                         </div>
                     </div>
-                    <div className="card bg-base-100">
+                    <div className="card bg-neutral">
                         <div className="card-body">
                             <h2 className="card-title">Available for night photoshoots also</h2>
                             <p>We have equipments ready for night photoshoots.</p>
                         </div>
                     </div>
-                    <div className="card bg-base-100">
+                    <div className="card bg-neutral">
                         <div className="card-body">
                             <h2 className="card-title">Different services to choose from</h2>
                             <p>We have a wide range of services and you can also request for custom services.</p>
