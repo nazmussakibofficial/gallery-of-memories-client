@@ -5,54 +5,64 @@ import { AuthContext } from '../../contexts/AuthProvider';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useForm } from 'react-hook-form';
 
 const Register = () => {
     const { createUser, updateUser, sigInWithGoogle } = useContext(AuthContext);
     const navigate = useNavigate();
     const location = useLocation();
-    const from = location.state?.from?.pathname || '/'
+    const { register, handleSubmit } = useForm();
+    const imageHostKey = process.env.REACT_APP_imgbb_key;
+    const from = location.state?.from?.pathname || '/';
 
-    const handleSubmit = event => {
-        event.preventDefault();
-        const form = event.target;
-        const email = form.email.value;
-        const password = form.password.value;
-        const name = form.name.value;
-        const photo = form.photo.value;
+    const handleSignUp = data => {
+        const image = data.photo[0]
+        const formData = new FormData();
+        formData.append('image', image);
+        const url = `https://api.imgbb.com/1/upload?key=${imageHostKey}`
+        fetch(url, {
+            method: 'POST',
+            body: formData
+        })
+            .then(res => res.json())
+            .then(imgData => {
+                if (imgData.success) {
+                    const photo = imgData.data.url
+                    createUser(data.email, data.password)
+                        .then(result => {
+                            const user = result.user;
+                            handleUpdateUser(data.name, photo);
+                            const currentUser = {
+                                email: user.email
+                            }
+                            fetch('https://gallery-of-memories-server.vercel.app/jwt', {
+                                method: 'POST',
+                                headers: {
+                                    'content-type': 'application/json'
+                                },
+                                body: JSON.stringify(currentUser)
+                            })
+                                .then(res => res.json())
+                                .then(data => {
+                                    localStorage.setItem('token', data.token);
+                                    navigate(from, { replace: true });
+                                })
+                            toast.success('Sign up Successful!', {
+                                position: "top-center",
+                                autoClose: 5000,
+                                hideProgressBar: false,
+                                closeOnClick: true,
+                                pauseOnHover: true,
+                                draggable: true,
+                                progress: undefined,
+                                theme: "dark",
+                            });
 
-        createUser(email, password)
-            .then(result => {
-                const user = result.user;
-                handleUpdateUser(name, photo);
-                const currentUser = {
-                    email: user.email
+                        })
+                        .catch(error => { console.log(error) });
                 }
 
-                fetch('https://gallery-of-memories-server.vercel.app/jwt', {
-                    method: 'POST',
-                    headers: {
-                        'content-type': 'application/json'
-                    },
-                    body: JSON.stringify(currentUser)
-                })
-                    .then(res => res.json())
-                    .then(data => {
-                        localStorage.setItem('token', data.token);
-                        form.reset();
-                        navigate(from, { replace: true });
-                    })
-                toast.success('Sign up Successful!', {
-                    position: "top-center",
-                    autoClose: 5000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "dark",
-                });
             })
-            .catch(e => console.error(e));
 
     }
 
@@ -103,30 +113,30 @@ const Register = () => {
                     <h1 className="text-5xl font-bold">Register now!</h1>
                 </div>
                 <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-                    <form onSubmit={handleSubmit} className="card-body">
+                    <form onSubmit={handleSubmit(handleSignUp)} className="card-body">
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Name</span>
                             </label>
-                            <input name='name' type="text" placeholder="name" className="input input-bordered" />
+                            <input {...register("name")} type="text" placeholder="name" className="input input-bordered" />
                         </div>
                         <div className="form-control">
                             <label className="label">
-                                <span className="label-text">Photo URL</span>
+                                <span className="label-text">Photo</span>
                             </label>
-                            <input name='photo' type="text" placeholder="photo url" className="input input-bordered" />
+                            <input {...register("photo")} type="file" className="file-input file-input-bordered file-input-primary w-full max-w-xs" />
                         </div>
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Email</span>
                             </label>
-                            <input name='email' type="email" placeholder="email" className="input input-bordered" required />
+                            <input {...register("email")} type="email" placeholder="email" className="input input-bordered" required />
                         </div>
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Password</span>
                             </label>
-                            <input name='password' type="password" placeholder="password" className="input input-bordered" required />
+                            <input {...register("password")} type="password" placeholder="password" className="input input-bordered" required />
                         </div>
                         <div className="form-control mt-6">
                             <button className="btn btn-primary">Register</button>
